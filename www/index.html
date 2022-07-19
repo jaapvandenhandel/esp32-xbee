@@ -1,9 +1,11 @@
 <html>
 <head>
-    <title>ESP32 XBee Config</title>
+    <title>ESP32 XBee Config (JvdH)</title>
     <script src="jquery-3.4.1.min.js"></script>
     <script src="bs-4.3.1.bundle.min.js"></script>
+    <script src="bootstrap-table.min.js"></script>
     <link rel="stylesheet" href="bs-4.3.1.min.css">
+    <link rel="stylesheet" href="bootstrap-table.min.css">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <style>
         input::-webkit-outer-spin-button,
@@ -467,12 +469,65 @@
                 }
             }
         }
+
+        var $table = $('#mobile-base-stations-table');
+    var mydata = 
+[
+    {
+        "id": 0,
+        "name": "test0",
+        "lat": "4.554545",
+        "lon": "52.554545"
+    },
+    {
+        "id": 1,
+        "name": "test1",
+        "lat": "4.554545",
+        "lon": "52.554545"
+    },
+    {
+        "id": 2,
+        "name": "test2",
+        "lat": "4.554545",
+        "lon": "52.554545"
+    },
+    {
+        "id": 3,
+        "name": "test3",
+        "lat": "4.554545",
+        "lon": "52.554545"
+    },
+    {
+        "id": 4,
+        "name": "test4",
+        "lat": "4.554545",
+        "lon": "52.554545"
+    },
+    {
+        "id": 5,
+        "name": "test5",
+        "lat": "4.554545",
+        "lon": "52.554545"
+    },
+    {
+        "id": 6,
+        "name": "test6",
+        "lat": "4.554545",
+        "lon": "52.554545"
+    }
+];
+
+$(function () {
+    $('#mobile-base-stations-table').bootstrapTable({
+        data: mydata
+    });
+});
     </script>
 </head>
 <body class="bg-light">
     <div class="container">
         <div class="pt-5 text-center">
-            <h2>ESP32 XBee Config <a id="project-version" href="https://github.com/nebkat/esp32-xbee/releases" class="text-muted small"></a> <a id="prerelease-available" class="text-info small" style="display: none">(beta available)</a></h2>
+            <h2>ESP32 XBee Config  (JvdH)<a id="project-version" href="https://github.com/nebkat/esp32-xbee/releases" class="text-muted small"></a> <a id="prerelease-available" class="text-info small" style="display: none">(beta available)</a></h2>
 
             <p class="lead">Adjust the settings below and then click on "Submit". The device will restart with the new settings applied. If you have adjusted WiFi settings the device may be moved onto a new IP address, or require you to reconnect to its access point.</p>
         </div>
@@ -922,6 +977,35 @@
                                     <label>CTS pin</label>
                                     <input type="number" name="uart_cts_pin" data-disable-if="input[type='checkbox'][name='uart_fc_cts']" class="form-control" placeholder="19" value="19" required>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Mobile base
+                            <small class="basestation-stats"></small>
+                            <div class="custom-control custom-switch d-inline float-right active">
+                                <input type="checkbox" name="use_as_base_active" value="1" checked class="custom-control-input" id="switch-mobile-base">
+                                <label class="custom-control-label" for="switch-mobile-base"></label>
+                            </div>
+                        </div>
+                        <div class="card-body" data-disable-if="#switch-mobile-base">
+                            <div class="form-row mb-3"> 
+                            </div>
+                            <div class="form-row mb-3">
+                                <table 
+                                    id="mobile-base-stations-table"
+                                    data-click-to-select="true">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="state" data-radio="true"></th>
+                                            <th data-field="id">Item ID</th>
+                                            <th data-field="name">Item Name</th>
+                                            <th data-field="lat">Lat</th>
+                                            <th data-field="lon">Lon</th>
+                                        </tr>
+                                    </thead>
+                                </table>
                             </div>
                         </div>
                     </div>
